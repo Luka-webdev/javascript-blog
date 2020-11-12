@@ -35,22 +35,21 @@ const titleClickHandler = function(event){
 
   function generateTitleLinks(){
 
-    /* remove contents of titleList */
+    /* [DONE] remove contents of titleList */
     const titleList=document.querySelector(optTitleListSelector);
     titleList.innerHTML="";
-    /* for each article */
-
-    /* get the article id */
-
-    /* find the title element */
-
-    /* get the title from the title element */
-
-    /* create HTML of the link */
-
+    /* [DONE] for each article */
+    const articles=document.querySelectorAll(optArticleSelector);
+    for (let article of articles){
+    /* [DONE] get the article id */
+      const articleId=article.getAttribute('id');
+    /* [DONE] find the title element and get the title from the title element*/
+      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    /* [DONE] create HTML of the link */
+      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';  
     /* insert link into titleList */
-
+    titleList.insertAdjacentHTML('beforebegin',linkHTML);
+    }
 }
-
 generateTitleLinks();
 }
