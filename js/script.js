@@ -114,4 +114,20 @@
     }
   };
   addClickListenersToTags();
+  const generateAuthors = function(){
+    /* find all articles */
+    const articles=document.querySelectorAll(optArticleSelector);
+    /* START LOOP: for every article: */
+    for(let article of articles){
+      /* find authors wrapper */
+      const authorWrapper=article.querySelector('post-author');
+      /* make html variable with empty string */
+      let html='';
+      /* get author from data-author attribute */
+      const author=article.getAttribute('data-author');
+      /* insert HTML of all the links into the author wrapper */
+      authorWrapper.insertAdjacentHTML('beforebegin',html);
+    }
+  };
+  generateAuthors();
 }
