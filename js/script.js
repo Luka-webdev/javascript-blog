@@ -166,60 +166,6 @@
     }
   };
   addClickListenersToAuthors();
-  // const generateTagsList = function(){
-  //   const listTagsWrapper = document.querySelector('.tags');
-  //   const allTagsArray = [];
-  //   const allTagsLinks = document.querySelectorAll('.post-tags a');
-  //   for(let tag of allTagsLinks){
-  //     allTagsArray.push(tag.textContent);
-  //   }
-  //   allTagsArray.sort();
-  //   const uniqeTagsArray = [];
-  //   for(let i=0;i<allTagsArray.length;i++){
-  //     if(allTagsArray[i] != allTagsArray[i-1]){
-  //       uniqeTagsArray.push(allTagsArray[i]);
-  //     }
-  //   }
-  //   for (let uniqueTag of uniqeTagsArray){
-  //     let counter = 0;
-  //     for(let j=0;j<allTagsArray.length;j++){
-  //       if(uniqueTag == allTagsArray[j]){
-  //         counter++;
-  //       }
-  //     }
-  //     const link='<li><a href="#">'+uniqueTag+'</a> ('+counter+')</li>';
-  //     listTagsWrapper.insertAdjacentHTML('beforeend',link);
-  //   }
-  // };
-  // generateTagsList();
-  // const generateAuthorsList = function(){
-  //   const listAuthorsWrapper = document.querySelector('.authors');
-  //   const allAuthorsArray = [];
-  //   const allAuthorsLinks = document.querySelectorAll('.post-author a');
-  //   for(let author of allAuthorsLinks){
-  //     allAuthorsArray.push(author.textContent);
-  //   }
-  //   allAuthorsArray.sort();
-  //   const uniqeAuthorsArray = [];
-  //   for(let i=0;i<allAuthorsArray.length;i++){
-  //     if(allAuthorsArray[i] != allAuthorsArray[i-1]){
-  //       uniqeAuthorsArray.push(allAuthorsArray[i]);
-  //     }
-  //   }
-  //   for (let uniqueAuthor of uniqeAuthorsArray){
-  //     let counter = 0;
-  //     for(let j=0;j<allAuthorsArray.length;j++){
-  //       if(uniqueAuthor == allAuthorsArray[j]){
-  //         counter++;
-  //       }
-  //     }
-  //     const link='<li><a href="#">'+uniqueAuthor+'</a> ('+counter+')</li>';
-  //     listAuthorsWrapper.insertAdjacentHTML('beforeend',link);
-  //   }
-  //   console.log(allAuthorsArray);
-  //   console.log(uniqeAuthorsArray);
-  // };
-  // generateAuthorsList();
 
   const authors = '.authors', tags = '.tags', authorLinks = '.post-author a', tagLinks = '.post-tags a';
 
@@ -242,9 +188,21 @@
       for(let j = 0;j<allItemsArray.length;j ++){
         if(uniqueItem == allItemsArray[j]){
           counter ++;
+          if(wrapper == tags){
+            var classFontSize ='';
+            if(counter<=2){
+              classFontSize = 'text-size-1';
+            }
+            else if(counter>2 && counter<=4){
+              classFontSize = 'text-size-2';
+            }
+            else if(counter>4){
+              classFontSize = 'text-size-3';
+            }
+          }
         }
       }
-      const link='<li><a href="#">'+ uniqueItem +'</a> ('+ counter +')</li>';
+      const link='<li class='+classFontSize+'><a href="#">'+ uniqueItem +'</a> ('+ counter +')</li>';
       listWrapper.insertAdjacentHTML('beforeend', link);
     }
   };
