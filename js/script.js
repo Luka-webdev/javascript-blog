@@ -168,26 +168,32 @@
   addClickListenersToAuthors();
 
   const authors = '.authors', tags = '.tags', authorLinks = '.post-author a', tagLinks = '.post-tags a';
-
+  // item means author or tag. It depends on the argument of the generateList function.
   const generateList = function(wrapper,links){
+    //find wrapper of authors or tags.
     const listWrapper = document.querySelector(wrapper);
     const allItemsArray = [];
+    //find all links with author or tags.
     const allItemsLinks = document.querySelectorAll(links);
+    // push all author or tags to array.
     for(let item of allItemsLinks){
       allItemsArray.push(item.textContent);
     }
     allItemsArray.sort();
-    const uniqeItemsArray = [];
+    const uniqueItemsArray = [];
+    //find unique authors or tags and push them to array.
     for(let i = 0;i<allItemsArray.length;i++){
       if(allItemsArray[i] != allItemsArray[i - 1]){
-        uniqeItemsArray.push(allItemsArray[i]);
+        uniqueItemsArray.push(allItemsArray[i]);
       }
     }
-    for (let uniqueItem of uniqeItemsArray){
+    for (let uniqueItem of uniqueItemsArray){
       let counter = 0;
+      // count the amount of each author or tag.
       for(let j = 0;j<allItemsArray.length;j ++){
         if(uniqueItem == allItemsArray[j]){
           counter ++;
+          // Change font size of each tag. 
           if(wrapper == tags){
             var classFontSize ='';
             if(counter<=2){
