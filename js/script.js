@@ -141,9 +141,13 @@
     /* make a new constant "author" and extract author from the "href" constant */
     const author = href.replace('#author-', '');
     /* find author link with class active */
-    const activeLink=document.querySelector('.active a[href^="#author-"]');
-    /* remove class active */
-    activeLink.classList.remove('active');
+    const activeLinks=document.querySelectorAll('a.active[href^="#author-"]');
+    /* START LOOP: for each active tag link */
+    for(let activeLink of activeLinks){
+      /* remove class active */
+      activeLink.classList.remove('active');
+      /* END LOOP: for each active tag link */
+    }
     /* find all author links with "href" attribute equal to the "href" constant */
     const authorLinks=document.querySelectorAll('a[href="' + href + '"]');
     /* START LOOP: for each found author link */
@@ -159,7 +163,7 @@
     /* find all links to authors */
     const links=document.querySelectorAll('.post-author a');
     /* START LOOP: for each link */
-    for(let link of (links)){
+    for(let link of links){
     /* add authorClickHandler as event listener for that link */
       link.addEventListener('click',authorClickHandler);
     /* END LOOP: for each link */
