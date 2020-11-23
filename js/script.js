@@ -129,7 +129,7 @@
       /* find authors wrapper */
       const authorWrapper=article.querySelector('.post-author');
       /* get authors from data-author attribute */
-      const author=authorWrapper.getAttribute('data-author');
+      const author=article.getAttribute('data-author');
       /* generate HTML of the link */
       const linkHTMLData = {id:'author-'+ author, title: author};
       const linkHTML = templates.authorLink(linkHTMLData);
@@ -166,6 +166,7 @@
     }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-author="' + author + '"]');
+    console.log('ok');
   };
   const addClickListenersToAuthors = function(){
     /* find all links to authors */
@@ -196,7 +197,7 @@
     //find unique authors or tags and push them to array.
     for(let i = 0;i<allItemsArray.length;i++){
       if(allItemsArray[i] != allItemsArray[i - 1]){
-        uniqueItemsArray.push(allItemsArray[i]);
+        uniqueItemsArray.push(allItemsArray[i]); 
       }
     }
     for (let uniqueItem of uniqueItemsArray){
@@ -227,4 +228,5 @@
   };
   generateList(authors,authorLinks);
   generateList(tags,tagLinks);
+  
 }
