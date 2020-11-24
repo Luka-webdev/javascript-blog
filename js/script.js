@@ -167,7 +167,6 @@
     }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-author="' + author + '"]');
-    console.log('ok');
   };
   const addClickListenersToAuthors = function(){
     /* find all links to authors */
@@ -180,8 +179,8 @@
     }
   };
   addClickListenersToAuthors();
-
-  const authors = '.authors', tags = '.tags', authorLinks = '.post-author a', tagLinks = '.post-tags a';
+  
+  const authors = '.authors', tags = '.tags', authorLinks = '.post-author a', tagLinks = '.post-tags a', authorsList = '.authors a', tagsList = '.tags a', tagFunction = tagClickHandler, authorFunction = authorClickHandler;
   // item means author or tag. It depends on the argument of the generateList function.
   const generateList = function(wrapper,links){
     //find wrapper of authors or tags.
@@ -223,18 +222,29 @@
         }
       }
       if(wrapper == tags){
-        const linkHTMLDataTag = {fontSize:classFontSize, content: uniqueItem};
+        const linkHTMLDataTag = {fontSize:classFontSize, id:'tag-'+ uniqueItem, content: uniqueItem};
         const linkHTMLTag = templates.tagCloudLink(linkHTMLDataTag);
         listWrapper.insertAdjacentHTML('beforeend', linkHTMLTag);
       }
       else if(wrapper == authors){
-        const linkHTMLDataAuthor = {content: uniqueItem, numb: counter};
+        const linkHTMLDataAuthor = {id:'author-'+ uniqueItem, content: uniqueItem, numb: counter};
         const linkHTMLAuthor = templates.authorsList(linkHTMLDataAuthor);
         listWrapper.insertAdjacentHTML('beforeend', linkHTMLAuthor);
       }
     }
   };
+  const addClickListenerToItemList = function(itemList,itemClick){
+    const linksItem=document.querySelectorAll(itemList);
+    /* START LOOP: for each link */
+    for(let link of (linksItem)){
+    /* add tagClickHandler as event listener for that link */
+      link.addEventListener('click',itemClick);
+    /* END LOOP: for each link */
+    }
+  };
   generateList(authors,authorLinks);
   generateList(tags,tagLinks);
-  
+  addClickListenerToItemList(authorsList,authorFunction);
+  addClickListenerToItemList(tagsList, tagFunction);
 }
+
