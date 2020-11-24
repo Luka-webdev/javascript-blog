@@ -119,4 +119,8 @@ body {
 .text-size-3 {
   font-size: 27px;
 }
+
+.tags li {
+  display: inline;
+}
 /*# sourceMappingURL=style.css.map */

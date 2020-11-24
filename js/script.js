@@ -4,7 +4,8 @@
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
     authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-    tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloudLink').innerHTML)
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloudLink').innerHTML),
+    authorsList: Handlebars.compile(document.querySelector('#template-authorsList').innerHTML) 
   };
   const titleClickHandler = function(event){
     event.preventDefault();
@@ -221,9 +222,16 @@
           }
         }
       }
-      const linkHTMLData = {fontSize:classFontSize, content: uniqueItem, numb:counter};
-      const linkHTML = templates.tagCloudLink(linkHTMLData);
-      listWrapper.insertAdjacentHTML('beforeend', linkHTML);
+      if(wrapper == tags){
+        const linkHTMLDataTag = {fontSize:classFontSize, content: uniqueItem};
+        const linkHTMLTag = templates.tagCloudLink(linkHTMLDataTag);
+        listWrapper.insertAdjacentHTML('beforeend', linkHTMLTag);
+      }
+      else if(wrapper == authors){
+        const linkHTMLDataAuthor = {content: uniqueItem, numb: counter};
+        const linkHTMLAuthor = templates.authorsList(linkHTMLDataAuthor);
+        listWrapper.insertAdjacentHTML('beforeend', linkHTMLAuthor);
+      }
     }
   };
   generateList(authors,authorLinks);

@@ -182,8 +182,11 @@
           </main>
         </div>
       </div>
+      <script id="template-authorsList" type="text/x-handlebars-template">
+        <li><a href="#">{{ content }}</a>&nbsp({{numb}})</li>
+      </script>
       <script id="template-tagCloudLink" type="text/x-handlebars-template">
-        <li class='{{ fontSize }}'><a href="#">{{ content }}</a>&nbsp({{ numb }})</li>
+        <li class='{{ fontSize }}'><a href="#">{{ content }}</a>&nbsp</li>
       </script>
       <script id="template-author-link" type="text/x-handlebars-template">
         <a href="#{{ id }}"><span>{{ title }}</span></a>
